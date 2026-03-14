@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שאלון הכנה לכתיבת עמוד נחיתה</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #faf9f7;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-light: #5a5a5a;
+    --text-muted: #8a8a8a;
+    --accent: #2d2d2d;
+    --accent-soft: #f0eee9;
+    --border: #e8e6e1;
+    --border-focus: #2d2d2d;
+    --section-bg: #f5f4f0;
+    --green: #2a6e4e;
+    --green-soft: #e8f5ee;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === HEADER === */
+  .hero {
+    background: var(--accent);
+    color: #fff;
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -20%;
+    width: 140%;
+    height: 180%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 6px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+  }
+
+  /* === PROGRESS === */
+  .progress-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .progress-track {
+    height: 3px;
+    background: var(--border);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .progress-info {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .progress-info .count {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* === MAIN CONTAINER === */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* === INTRO CARD === */
+  .intro-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    margin: 32px 0;
+    box-shadow: var(--shadow-md);
+    position: relative;
+  }
+
+  .intro-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: var(--accent);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .intro-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--accent);
+  }
+
+  .intro-card p {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .intro-card .highlight {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.8;
+    border-right: 3px solid var(--accent);
+  }
+
+  /* === SECTION === */
+  .section {
+    margin-top: 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .section-number {
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    margin-right: 54px;
+  }
+
+  /* === QUESTION CARD === */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .q-card:focus-within {
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-md);
+  }
+
+  .q-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+
+  .q-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--accent-soft);
+    color: var(--text);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 8px;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+
+  .q-hint {
+    display: block;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .q-card textarea,
+  .q-card input[type="text"] {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    resize: none;
+    overflow: hidden;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    direction: rtl;
+  }
+
+  .q-card textarea:focus,
+  .q-card input[type="text"]:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    background: #fff;
+  }
+
+  .q-card textarea::placeholder,
+  .q-card input::placeholder {
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .q-card textarea { min-height: 100px; }
+  .q-card textarea.tall { min-height: 140px; }
+  .q-card textarea.short { min-height: 70px; }
+
+  /* Radio / Checkbox groups */
+  .q-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .q-option {
+    position: relative;
+  }
+
+  .q-option input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .q-option label {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--bg);
+  }
+
+  .q-option input:checked + label {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .q-option label:hover {
+    border-color: var(--text-muted);
+  }
+
+  /* === DIVIDER === */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0 0;
+  }
+
+  /* === FOOTER CARD === */
+  .footer-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    margin-top: 48px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .footer-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .checklist {
+    list-style: none;
+    margin: 20px 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  .checklist li .icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--green-soft);
+    color: var(--green);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  /* === SUBMIT === */
+  .submit-area {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 48px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .submit-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+
+  /* === BRANDING === */
+  .branding {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .branding a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* === OPTIONAL TAG === */
+  .optional-tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 40px; }
+    .intro-card, .footer-card { padding: 28px 22px; }
+    .q-card { padding: 22px 20px 20px; }
+    .container { padding: 0 16px 60px; }
+    .section-title { font-size: 19px; }
+    .q-options { flex-direction: column; }
+    .q-option label { width: 100%; text-align: center; }
+  }
+
+  /* === PRINT / PDF === */
+  @media print {
+    .progress-bar { display: none !important; }
+    .hero { background: #fff !important; color: #000 !important; padding: 24px; border-bottom: 2px solid #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .hero-badge { border-color: #000; color: #000 !important; background: transparent !important; }
+    .hero p { color: #333 !important; }
+    .section-number { background: #2d2d2d !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .q-number { background: #f0eee9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .q-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; box-shadow: none !important; }
+    .q-card textarea, .q-card input[type="text"] {
+      border: none !important;
+      background: transparent !important;
+      padding: 8px 0 !important;
+      min-height: auto !important;
+      height: auto !important;
+      overflow: visible !important;
+      white-space: pre-wrap !important;
+      font-size: 14px !important;
+    }
+    .q-card textarea:empty, .q-card input[type="text"]:placeholder-shown {
+      display: none !important;
+    }
+    .submit-area { display: none !important; }
+    .pdf-save-area { display: none !important; }
+    .no-print { display: none !important; }
+    body { background: #fff !important; }
+    .container { padding-bottom: 20px !important; }
+    .section-divider { margin: 24px 0 0 !important; }
+    .section { margin-top: 24px !important; }
+    .footer-card { break-inside: avoid; page-break-inside: avoid; }
+    .intro-card { break-inside: avoid; page-break-inside: avoid; }
+    .branding { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* === ANIMATION === */
+  .q-card { opacity: 0; transform: translateY(12px); animation: fadeUp 0.4s ease forwards; }
+  .q-card:nth-child(1) { animation-delay: 0.05s; }
+  .q-card:nth-child(2) { animation-delay: 0.1s; }
+  .q-card:nth-child(3) { animation-delay: 0.15s; }
+  .q-card:nth-child(4) { animation-delay: 0.2s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">QUIXALE COPY</div>
+    <h1>שאלון הכנה לכתיבת עמוד נחיתה</h1>
+    <p>36 שאלות שיעזרו לנו לכתוב עמוד שנשמע בדיוק כמוך.<br>לא כמו קופירייטר. כמוך.</p>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-info">
+    <span><span class="count" id="answeredCount">0</span> מתוך 36 שאלות</span>
+    <span id="progressPercent">0%</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- INTRO CARD -->
+  <div class="intro-card">
+    <h2>לפני שמתחילים, כלל אחד</h2>
+    <p>אני לא צריך ממך טקסטים שיווקיים. אני צריך <strong>אותך</strong>. איך שאת/ה מדבר/ת. בלי לנסות להישמע מקצועי. בלי "שפה נקייה".</p>
+    <p>תדמיין/י שאנחנו יושבים על קפה ואני שואל אותך על העסק. ככה תכתוב/י.</p>
+    <div class="highlight">
+      אם התשובה שלך נשמעת כמו משהו שהיית אומר/ת <strong>בשיחת טלפון עם חבר/ה</strong> — מעולה.<br>
+      אם היא נשמעת כמו משהו שהיית כותב/ת באתר — תנסה/י שוב.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 1: ABOUT YOU              -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div class="section-title">קצת עליך</div>
+    </div>
+    <div class="section-subtitle">הסיפור שלך, המסע שלך, מה שעיצב אותך</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">1</span>
+        מה השם שלך ומה שם העסק?
+      </label>
+      <input type="text" name="q1" placeholder="שם מלא + שם העסק" data-q="1">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">2</span>
+        ספר/י לי את הסיפור שלך בקצרה. לא קורות חיים, לא ביוגרפיה. מה קרה בחיים שלך שגרם לך לעשות את מה שאת/ה עושה היום?
+      </label>
+      <span class="q-hint">רגע מכונן, משבר, תובנה, מפנה, מה שזה היה</span>
+      <textarea name="q2" class="tall" placeholder="פשוט תספר/י. כאילו אני חבר שמקשיב..." data-q="2"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">3</span>
+        מה עשית לפני? ואיך הגעת מ"שם" ל"פה"?
+      </label>
+      <textarea name="q3" placeholder="" data-q="3"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">4</span>
+        יש משהו בסיפור שלך שאנשים תמיד מופתעים לשמוע?
+      </label>
+      <textarea name="q4" class="short" placeholder="" data-q="4"></textarea>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 2: WHAT YOU DO             -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div class="section-title">מה בדיוק את/ה עושה</div>
+    </div>
+    <div class="section-subtitle">איך שאת/ה מסביר/ת את זה, לא איך שזה כתוב</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">5</span>
+        תדמיין/י שאת/ה פוגש/ת מישהו בחתונה והוא שואל "מה את/ה עושה?". מה את/ה אומר/ת?
+      </label>
+      <span class="q-hint">לא מה כתוב באתר. מה את/ה באמת אומר/ת.</span>
+      <textarea name="q5" placeholder="" data-q="5"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">6</span>
+        עכשיו תסביר/י את אותו דבר, אבל למישהו שבכלל לא מכיר את התחום שלך. כאילו לסבתא שלך.
+      </label>
+      <textarea name="q6" placeholder="" data-q="6"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">7</span>
+        מה הגישה שלך? מה את/ה עושה אחרת מכולם?
+      </label>
+      <span class="q-hint">לא "אני מקצועי ומנוסה". מה באמת שונה בדרך שלך?</span>
+      <textarea name="q7" placeholder="" data-q="7"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">8</span>
+        תתאר/י את תהליך העבודה שלך מההתחלה ועד הסוף. שלב אחרי שלב, כאילו את/ה מסביר/ת ללקוח חדש.
+      </label>
+      <textarea name="q8" class="tall" placeholder="" data-q="8"></textarea>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 3: YOUR CLIENTS            -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div class="section-title">הלקוחות שלך</div>
+    </div>
+    <div class="section-subtitle">מי הם, מה כואב להם, ומה קורה אחרי שעובדים איתך</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">9</span>
+        מי הלקוח/ה האידיאלי/ת שלך?
+      </label>
+      <span class="q-hint">אל תגיד/י "נשים בגילאי 25-45". תתאר/י אדם אחד ספציפי. מה קורה לו/לה בחיים? איך הוא/היא מרגיש/ה?</span>
+      <textarea name="q9" class="tall" placeholder="" data-q="9"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">10</span>
+        מה הבעיה המרכזית שהלקוחות שלך באים איתה? ואיך הם מתארים אותה?
+      </label>
+      <span class="q-hint">מה הם אומרים כשהם פונים אליך? המילים המדויקות שלהם.</span>
+      <textarea name="q10" class="tall" placeholder="למשל: ״אני כבר לא יודע מה לעשות...״ / ״ניסיתי הכל ושום דבר לא עובד...״" data-q="10"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">11</span>
+        מה כבר ניסו לפני שהגיעו אליך? ולמה זה לא עבד?
+      </label>
+      <textarea name="q11" placeholder="" data-q="11"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">12</span>
+        מה קורה אם הם לא פותרים את הבעיה? איך נראים החיים שלהם בעוד שנה אם הם לא עושים כלום?
+      </label>
+      <textarea name="q12" placeholder="" data-q="12"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">13</span>
+        ומה קורה אחרי שעובדים איתך? איך נראים החיים?
+      </label>
+      <span class="q-hint">תתאר/י את ה"אחרי" כמו שאת/ה מספר/ת את זה ללקוח בשיחה.</span>
+      <textarea name="q13" class="tall" placeholder="" data-q="13"></textarea>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 4: PROOF                   -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div class="section-title">הוכחות ותוצאות</div>
+    </div>
+    <div class="section-subtitle">מספרים, סיפורים, כל מה שמוכיח שזה עובד</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">14</span>
+        כמה לקוחות / מטופלים / תלמידים עברו דרכך עד היום?
+      </label>
+      <span class="q-hint">מספר, גם בערך</span>
+      <input type="text" name="q14" placeholder="למשל: מעל 200, בערך 50, עשרות..." data-q="14">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">15</span>
+        ספר/י לי על סיפור הצלחה אחד שבאמת ריגש אותך.
+      </label>
+      <span class="q-hint">מה היה ה"לפני", מה עשיתם ביחד, ומה קרה בסוף?</span>
+      <textarea name="q15" class="tall" placeholder="" data-q="15"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">16</span>
+        יש עוד סיפור?
+      </label>
+      <span class="q-hint">ככל שיש יותר, הקופי יהיה חזק יותר</span>
+      <textarea name="q16" class="tall" placeholder="" data-q="16"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">17</span>
+        יש לך מספרים שאפשר להשתמש בהם?
+      </label>
+      <span class="q-hint">אחוזי הצלחה, זמן עד תוצאה, כמה שנים של ניסיון, ציון שביעות רצון, כל מספר שקשור לעסק</span>
+      <textarea name="q17" placeholder="למשל: 93% מהלקוחות רואים תוצאות תוך 3 חודשים, 8 שנות ניסיון..." data-q="17"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">18</span>
+        יש לך צילומי מסך של הודעות / ביקורות מלקוחות מרוצים? סרטוני המלצה?
+      </label>
+      <div class="q-options" style="margin-top: 12px;">
+        <div class="q-option">
+          <input type="radio" name="q18_screenshots" id="q18_s_yes" value="yes" data-q="18">
+          <label for="q18_s_yes">יש צילומי מסך</label>
+        </div>
+        <div class="q-option">
+          <input type="radio" name="q18_screenshots" id="q18_s_video" value="video">
+          <label for="q18_s_video">יש סרטונים</label>
+        </div>
+        <div class="q-option">
+          <input type="radio" name="q18_screenshots" id="q18_s_both" value="both">
+          <label for="q18_s_both">יש גם וגם</label>
+        </div>
+        <div class="q-option">
+          <input type="radio" name="q18_screenshots" id="q18_s_no" value="no">
+          <label for="q18_s_no">אין</label>
+        </div>
+      </div>
+      <input type="text" name="q18_count" placeholder="כמה בערך?" style="margin-top: 8px;">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">19</span>
+        האם יש לקוחות שיסכימו לתת המלצה?
+      </label>
+      <span class="q-hint">שם + תמונה + ציטוט קצר</span>
+      <textarea name="q19" class="short" placeholder="" data-q="19"></textarea>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 5: BELIEFS                 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div class="section-title">מה שמדליק אותך (ומה שמעצבן)</div>
+    </div>
+    <div class="section-subtitle">האמונות, הדעות, האש שמאחורי העסק</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">20</span>
+        מה את/ה מאמין/ה לגבי התחום שלך שרוב האנשים לא?
+      </label>
+      <textarea name="q20" placeholder="" data-q="20"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">21</span>
+        מה מעצבן אותך בתעשייה? מה גורם לך לרצות לצעוק?
+      </label>
+      <textarea name="q21" class="tall" placeholder="" data-q="21"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">22</span>
+        יש משפט או אמירה שאת/ה חוזר/ת עליה שוב ושוב? כזו שהלקוחות שלך כבר מכירים?
+      </label>
+      <textarea name="q22" class="short" placeholder="למשל: ״אין קיצורי דרך״ / ״הכל מתחיל מהבסיס״..." data-q="22"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">23</span>
+        אם היה לך שלט חוצות ענק שכולם רואים, מה היית כותב/ת עליו?
+      </label>
+      <input type="text" name="q23" placeholder="" data-q="23">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">24</span>
+        למי את/ה לא מתאים/ה? מי הלקוח שאת/ה ממש לא רוצה? ולמה?
+      </label>
+      <textarea name="q24" placeholder="" data-q="24"></textarea>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 6: THE PITCH               -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div class="section-title">תמכור/י לי</div>
+    </div>
+    <div class="section-subtitle">הנה הרגע שלך. תשכנע/י אותי.</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">25</span>
+        תדמיין/י שהלקוח/ה האידיאלי/ת שלך יושב/ת מולך. הוא/היא לא בטוח/ה. תגיד/י לו/לה למה כדאי לעבוד איתך.
+      </label>
+      <textarea name="q25" class="tall" placeholder="פשוט תכתוב/י כאילו את/ה מדבר/ת אליו/ה עכשיו..." data-q="25"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">26</span>
+        מה הסיבה מספר 1 שאנשים בוחרים בך ולא במישהו אחר?
+      </label>
+      <textarea name="q26" class="short" placeholder="" data-q="26"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">27</span>
+        מה ההתלבטות הכי נפוצה של אנשים לפני שהם סוגרים איתך? ואיך את/ה מגיב/ה?
+      </label>
+      <textarea name="q27" class="tall" placeholder="" data-q="27"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">28</span>
+        מה ההבטחה שלך? מה את/ה יכול/ה להבטיח בלי לשקר?
+      </label>
+      <textarea name="q28" placeholder="" data-q="28"></textarea>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 7: TECHNICAL               -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <div class="section-title">פרטים טכניים</div>
+    </div>
+    <div class="section-subtitle">שירותים, מחירים, העדפות לעמוד</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">29</span>
+        מה השירותים / מוצרים שלך ומה המחירים?
+      </label>
+      <span class="q-hint">אם יש מסלולים, תפרט/י</span>
+      <textarea name="q29" class="tall" placeholder="" data-q="29"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">30</span>
+        את/ה רוצה להציג מחירים בעמוד?
+      </label>
+      <div class="q-options" style="margin-top: 12px;">
+        <div class="q-option">
+          <input type="radio" name="q30" id="q30_yes" value="yes" data-q="30">
+          <label for="q30_yes">כן, להציג</label>
+        </div>
+        <div class="q-option">
+          <input type="radio" name="q30" id="q30_from" value="from">
+          <label for="q30_from">רק "החל מ..."</label>
+        </div>
+        <div class="q-option">
+          <input type="radio" name="q30" id="q30_no" value="no">
+          <label for="q30_no">לא, בלי מחירים</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">31</span>
+        מה את/ה רוצה שיקרה אחרי שמישהו משאיר פרטים?
+      </label>
+      <span class="q-hint">שיחת טלפון? הודעת וואטסאפ? פגישת ייעוץ? ותוך כמה זמן?</span>
+      <textarea name="q31" class="short" placeholder="" data-q="31"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">32</span>
+        יש משהו שאת/ה ממש רוצה שיופיע בעמוד?
+      </label>
+      <span class="q-hint">מבצע, אחריות, מספר וואטסאפ, סרטון, לוגו, עדויות ספציפיות</span>
+      <textarea name="q32" placeholder="" data-q="32"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">33</span>
+        יש משהו שאת/ה ממש לא רוצה בעמוד?
+      </label>
+      <span class="q-hint">מחיר, תמונה שלך, דברים מסוימים, טון מסוים</span>
+      <textarea name="q33" placeholder="" data-q="33"></textarea>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 8: BONUS                   -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <div class="section-title">עוד קצת</div>
+    </div>
+    <div class="section-subtitle">אופציונלי, אבל שווה זהב</div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">34</span>
+        <span class="optional-tag">אופציונלי</span>
+        יש דימוי או השוואה שאת/ה תמיד משתמש/ת בהם כשאת/ה מסביר/ת מה את/ה עושה?
+      </label>
+      <span class="q-hint">למשל: "זה כמו...", "תחשוב/י על זה כאילו..."</span>
+      <textarea name="q34" class="short" placeholder="" data-q="34"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">35</span>
+        <span class="optional-tag">אופציונלי</span>
+        מה הדבר הכי חשוב שהיית רוצה שלקוח פוטנציאלי ידע עליך, שאף אחד בדרך כלל לא שואל?
+      </label>
+      <textarea name="q35" placeholder="" data-q="35"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">
+        <span class="q-number">36</span>
+        <span class="optional-tag">אופציונלי</span>
+        יש משהו נוסף שלא שאלתי ושחשוב לך שאדע?
+      </label>
+      <textarea name="q36" placeholder="" data-q="36"></textarea>
+    </div>
+  </div>
+
+  <!-- FOOTER CARD -->
+  <div class="footer-card">
+    <h3>מעולה, סיימת!</h3>
+    <p style="color: var(--text-light); margin-bottom: 16px;">עכשיו שלח/י את זה חזרה. ואם יש לך גם את הדברים האלה, תצרף/י:</p>
+    <ul class="checklist">
+      <li>
+        <span class="icon">+</span>
+        <span><strong>צילומי מסך של הודעות מלקוחות</strong></span>
+      </li>
+      <li>
+        <span class="icon">+</span>
+        <span><strong>קישור לעמוד הנוכחי</strong> (אם יש)</span>
+      </li>
+      <li>
+        <span class="icon">+</span>
+        <span><strong>פוסטים מרשתות חברתיות</strong> שקיבלו תגובות טובות — זהב טהור</span>
+      </li>
+    </ul>
+
+    <div class="submit-area">
+      <button class="submit-btn" onclick="downloadAnswers()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        הורדת התשובות כקובץ
+      </button>
+      <p class="submit-note">הקובץ יישמר אצלך, ואז תשלח/י אותו אלינו</p>
+    </div>
+
+    <div class="pdf-save-area" style="text-align: center; margin-top: 20px;">
+      <button class="submit-btn" style="background: #5a5a5a;" onclick="savePDF()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        שמירה כ-PDF
+      </button>
+      <p class="submit-note">רוצה לשמור עותק? לחץ/י כאן</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- BRANDING -->
+<div class="branding">
+  נבנה ע"י QUIXALE
+</div>
+
+<script>
+// === PROGRESS TRACKING ===
+const allInputs = document.querySelectorAll('textarea, input[type="text"]');
+const allRadios = document.querySelectorAll('input[type="radio"]');
+const totalQuestions = 36;
+const progressFill = document.getElementById('progressFill');
+const answeredCount = document.getElementById('answeredCount');
+const progressPercent = document.getElementById('progressPercent');
+
+function updateProgress() {
+  const answered = new Set();
+
+  allInputs.forEach(el => {
+    const q = el.getAttribute('data-q');
+    if (q && el.value.trim().length > 0) answered.add(q);
+  });
+
+  allRadios.forEach(el => {
+    const q = el.getAttribute('data-q');
+    if (q && el.checked) answered.add(q);
+  });
+
+  // Count radios by group name
+  const radioGroups = {};
+  allRadios.forEach(el => {
+    if (el.checked) {
+      const name = el.name;
+      if (name === 'q30') answered.add('30');
+      if (name === 'q18_screenshots') answered.add('18');
+    }
+  });
+
+  const count = answered.size;
+  const pct = Math.round((count / totalQuestions) * 100);
+
+  progressFill.style.width = pct + '%';
+  answeredCount.textContent = count;
+  progressPercent.textContent = pct + '%';
+}
+
+allInputs.forEach(el => el.addEventListener('input', updateProgress));
+allRadios.forEach(el => el.addEventListener('change', updateProgress));
+
+// === AUTO-SAVE TO LOCAL STORAGE ===
+const STORAGE_KEY = 'quixale_questionnaire';
+
+function saveToStorage() {
+  const data = {};
+  allInputs.forEach(el => {
+    if (el.name) data[el.name] = el.value;
+  });
+  allRadios.forEach(el => {
+    if (el.checked) data[el.name] = el.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function loadFromStorage() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    allInputs.forEach(el => {
+      if (el.name && data[el.name]) el.value = data[el.name];
+    });
+    allRadios.forEach(el => {
+      if (el.name && data[el.name] === el.value) el.checked = true;
+    });
+    updateProgress();
+    // Resize textareas to fit restored content
+    allInputs.forEach(el => {
+      if (el.tagName === 'TEXTAREA') {
+        el.style.height = 'auto';
+        const minH = el.classList.contains('tall') ? 140 : el.classList.contains('short') ? 70 : 100;
+        el.style.height = Math.max(el.scrollHeight, minH) + 'px';
+      }
+    });
+  } catch (e) {}
+}
+
+allInputs.forEach(el => el.addEventListener('input', saveToStorage));
+allRadios.forEach(el => el.addEventListener('change', saveToStorage));
+loadFromStorage();
+
+// === AUTO-RESIZE TEXTAREAS ===
+function autoResize(el) {
+  el.style.height = 'auto';
+  const minH = el.classList.contains('tall') ? 140 : el.classList.contains('short') ? 70 : 100;
+  el.style.height = Math.max(el.scrollHeight, minH) + 'px';
+}
+
+allInputs.forEach(el => {
+  if (el.tagName === 'TEXTAREA') {
+    el.addEventListener('input', function() { autoResize(this); });
+    // Also resize on load (for restored content from localStorage)
+    autoResize(el);
+  }
+});
+
+// === SAVE AS PDF ===
+function savePDF() {
+  window.print();
+}
+
+// === DOWNLOAD ANSWERS ===
+function downloadAnswers() {
+  const sections = [
+    { title: 'קצת עליך', qs: [
+      { n: 1, label: 'שם + שם העסק' },
+      { n: 2, label: 'הסיפור שלך' },
+      { n: 3, label: 'מה עשית לפני' },
+      { n: 4, label: 'מה מפתיע בסיפור שלך' },
+    ]},
+    { title: 'מה בדיוק את/ה עושה', qs: [
+      { n: 5, label: 'איך מסביר/ת בחתונה' },
+      { n: 6, label: 'איך מסביר/ת לסבתא' },
+      { n: 7, label: 'מה שונה בגישה שלך' },
+      { n: 8, label: 'תהליך העבודה שלב אחרי שלב' },
+    ]},
+    { title: 'הלקוחות שלך', qs: [
+      { n: 9, label: 'תיאור הלקוח האידיאלי' },
+      { n: 10, label: 'הבעיה המרכזית + מילים של לקוחות' },
+      { n: 11, label: 'מה ניסו לפני' },
+      { n: 12, label: 'מה קורה אם לא פותרים' },
+      { n: 13, label: 'ה"אחרי" — איך נראים החיים' },
+    ]},
+    { title: 'הוכחות ותוצאות', qs: [
+      { n: 14, label: 'כמה לקוחות' },
+      { n: 15, label: 'סיפור הצלחה 1' },
+      { n: 16, label: 'סיפור הצלחה 2' },
+      { n: 17, label: 'מספרים' },
+      { n: 18, label: 'צילומי מסך / סרטונים', radio: 'q18_screenshots', extra: 'q18_count' },
+      { n: 19, label: 'לקוחות שיתנו המלצה' },
+    ]},
+    { title: 'מה שמדליק (ומעצבן)', qs: [
+      { n: 20, label: 'אמונה שרוב האנשים לא מחזיקים' },
+      { n: 21, label: 'מה מעצבן בתעשייה' },
+      { n: 22, label: 'משפט חוזר' },
+      { n: 23, label: 'שלט חוצות' },
+      { n: 24, label: 'למי לא מתאים' },
+    ]},
+    { title: 'תמכור/י לי', qs: [
+      { n: 25, label: 'למה כדאי לעבוד איתך' },
+      { n: 26, label: 'למה בוחרים בך' },
+      { n: 27, label: 'התלבטות נפוצה + תגובה' },
+      { n: 28, label: 'ההבטחה שלך' },
+    ]},
+    { title: 'פרטים טכניים', qs: [
+      { n: 29, label: 'שירותים ומחירים' },
+      { n: 30, label: 'להציג מחירים?', radio: 'q30' },
+      { n: 31, label: 'מה קורה אחרי השארת פרטים' },
+      { n: 32, label: 'מה כן רוצה בעמוד' },
+      { n: 33, label: 'מה לא רוצה בעמוד' },
+    ]},
+    { title: 'עוד קצת', qs: [
+      { n: 34, label: 'דימוי או השוואה' },
+      { n: 35, label: 'מה חשוב שידעו' },
+      { n: 36, label: 'משהו נוסף' },
+    ]},
+  ];
+
+  let text = '# שאלון הכנה לכתיבת עמוד נחיתה\n';
+  text += '# ' + new Date().toLocaleDateString('he-IL') + '\n\n';
+  text += '---\n\n';
+
+  sections.forEach(sec => {
+    text += '## ' + sec.title + '\n\n';
+    sec.qs.forEach(q => {
+      text += '### ' + q.n + '. ' + q.label + '\n';
+
+      if (q.radio) {
+        const checked = document.querySelector('input[name="' + q.radio + '"]:checked');
+        text += (checked ? checked.value : '(לא נבחר)') + '\n';
+        if (q.extra) {
+          const extraEl = document.querySelector('[name="' + q.extra + '"]');
+          if (extraEl && extraEl.value.trim()) text += extraEl.value.trim() + '\n';
+        }
+      } else {
+        const el = document.querySelector('[name="q' + q.n + '"]');
+        const val = el ? el.value.trim() : '';
+        text += (val || '(לא מולא)') + '\n';
+      }
+      text += '\n';
+    });
+    text += '---\n\n';
+  });
+
+  const blob = new Blob(['\uFEFF' + text], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+
+  // Try to get client name from Q1
+  const nameEl = document.querySelector('[name="q1"]');
+  const clientName = nameEl && nameEl.value.trim() ? nameEl.value.trim().split(' ')[0] : 'client';
+  a.download = 'questionnaire-' + clientName + '.md';
+  a.href = url;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
